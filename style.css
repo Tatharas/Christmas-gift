@@ -1,0 +1,101 @@
+:root {
+    --tulip-pink: #d88c9a;
+    --soft-blush: #f7e6ea;
+    --cream: #fffaf7;
+    --text: #444;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    text-align: center;
+    line-height: 1.7;
+}
+
+.valo-accent {
+    height: 6px;
+    background: linear-gradient(to right, #f3b5c1, #c6b7d6);
+}
+
+.header {
+    padding: 50px 20px;
+    background: linear-gradient(#f9dce3, var(--cream));
+}
+
+.header h1 {
+    color: var(--tulip-pink);
+}
+
+.subtitle {
+    font-style: italic;
+    color: #8b6f7a;
+}
+
+.tulip-bouquet img {
+    width: 260px;
+    border-radius: 20px;
+    border: 4px solid var(--soft-blush);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+section {
+    background: white;
+    padding: 35px;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.the-one-message {
+    background: linear-gradient(var(--soft-blush), white);
+}
+
+h2, h3 {
+    color: var(--tulip-pink);
+    text-align: center;
+}
+
+.message-photo {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid var(--soft-blush);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.left { float: left; margin: 0 18px 10px 0; }
+.right { float: right; margin: 0 0 10px 18px; }
+.center { display: block; margin: 30px auto 0; }
+
+.swift-valorant {
+    display: flex;
+    gap: 20px;
+}
+
+.signature {
+    font-family: "Brush Script MT", cursive;
+    font-size: 1.9em;
+    color: var(--tulip-pink);
+    text-align: center;
+}
+
+section p { clear: both; }
+
+@media (max-width: 600px) {
+    .swift-valorant { flex-direction: column; }
+    .left, .right {
+        float: none;
+        display: block;
+        margin: 15px auto;
+    }
+}
