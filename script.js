@@ -1,53 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Signature Hover Effect ---
-    const signature = document.querySelector('.signature');
-    if (signature) {
-        signature.addEventListener('mouseover', () => {
-            signature.style.color = '#000000'; // Change to black or gold on hover
-            signature.style.textShadow = '1px 1px 2px var(--gold-accent)';
-        });
-        signature.addEventListener('mouseout', () => {
-            signature.style.color = 'var(--primary-red)';
-            signature.style.textShadow = 'none';
-        });
-    }
-
-    // --- Audio Autoplay Fix for "It's Nice to Have a Friend" ---
     const audio = document.getElementById('background-music');
-    
-    // Attempt to play the audio
-    const playPromise = audio.play();
+    if (!audio) return;
 
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            // Autoplay was successful (unmuted or browser allowed it)
-        }).catch(error => {
-            // Autoplay was prevented by the browser. Show a button to start it.
-            const musicStarter = document.createElement('div');
-            
-            // Create the wrapper for the button
-            musicStarter.style.cssText = `
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                width: 100%; 
-                height: 100%; 
-                display: flex; 
-                justify-content: center; 
-                align-items: center; 
-                background: rgba(0,0,0,0.8); /* Semi-transparent overlay */
-                z-index: 9999;
-            `;
-            
-            // Create the button element
-            musicStarter.innerHTML = '<button id="play-music-btn">Click to Start Music</button>';
-            document.body.appendChild(musicStarter);
+    audio.play().catch(() => {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            inset: 0;
+            background: rgba(255,250,247,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        `;
 
-            // Add listener to the button
-            document.getElementById('play-music-btn').addEventListener('click', () => {
-                audio.play();
-                musicStarter.remove(); // Remove the overlay once music starts
-            });
-        });
-    }
+        const btn = document.createElement('button');
+        btn.textContent = '🌷 Tap to play our song';
+        btn.style.cssText = `
+            padding: 14px 28px;
+            font-size: 1.2em;
+            background: linear-gradient(#f3b5c1, #d88c9a);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        `;
+
+        btn.onclick = () => {
+            audio.play();
+            overlay.remove();
+        };
+
+        overlay.appendChild(btn);
+        document.body.appendChild(overlay);
+    });
 });
